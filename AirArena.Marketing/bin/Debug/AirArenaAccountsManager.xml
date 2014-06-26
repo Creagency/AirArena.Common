@@ -1,0 +1,361 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+AirArenaAccountsManager
+</name>
+</assembly>
+<members>
+<member name="M:AirArena.Accounts.AppStoreDetails.Delete(AirArena.Accounts.PaymentMedium.DeleteMode)">
+	<summary>
+ Deletes an AppStoreDetails record from the database.
+ </summary>
+	<param name="Mode">The different delete modes are identical for AppStoreDetails objects.</param>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.Purchase.StopSchedulesByForeignId(System.String)">
+	<summary>
+ Stops the billing but does not close the account for all schedules associated with any purchases with the passed in foreignid. Does not create a transaction or journal entry.
+ Does not change the status of Recovery or Delayed Capture schedules.
+ </summary>
+	<param name="foreignId"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.Purchase.StopSchedulesByForeignId(System.String,System.String,System.String)">
+	<summary>
+ Stops the billing but does not close the account for all schedules associated with any purchases with the passed in foreignid and creates
+ a zero transaction and journal to log the event.
+ Does not change the status of Recovery or Delayed Capture schedules.
+ </summary>
+	<param name="foreignId"></param>
+	<param name="notes">the notes to be journaled</param>
+	<param name="authorisedBy">Who authorised the change.</param>
+	<returns>boolean: true indicates that there were purchases existing for the foreignid.</returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.Purchase.CloseAccountByForeignId(System.String)">
+	<summary>
+ Closes the accounts and stops the billing for each schedule for the purchases with the passed in foreignId.
+ Does not change the status of Recovery or Delayed Capture schedules.
+ </summary>
+	<param name="foreignId"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.Purchase.CloseAccountByForeignId(System.String,System.String,System.String)">
+	<summary>
+ Closes the accounts and stops the billing for each schedule for the purchases with the passed in foreignId and creates
+ a zero transaction and journal to log the event.
+ Does not change the status of Recovery or Delayed Capture schedules.
+ </summary>
+	<param name="foreignId"></param>
+	<param name="notes">the notes to be journaled</param>
+	<param name="authorisedBy">Who authorised the change.</param>
+	<returns>boolean: true indicates that there were purchases existing for the foreignid.</returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.Purchase.CloseAccountByForeignId(System.String,System.String,System.String,System.Boolean,System.Boolean)">
+	<summary>
+ Closes the accounts and stops the billing for each schedule for the purchases with the passed in foreignId and creates
+ a zero transaction and journal to log the event.
+ Closes Recovery schedules only if cancelDelayedCaptures = true, and then also voids/refunds the auth transaction.
+ Does not change the status of Delayed Capture schedules.
+ </summary>
+	<param name="foreignId"></param>
+	<param name="notes">the notes to be journaled</param>
+	<param name="authorisedBy">Who authorised the change.</param>
+	<returns>boolean: true indicates that there were purchases existing for the foreignid.</returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.Purchase.Close">
+	<summary>
+ Enumerates all regular and irregular Schedules associated with the Purchase, and calls the close method on those schedules.
+ It does not close DelayedCapture nor Recovery schedules, however DelayedCapture schedules will have their scheduleDT set to now() so that they can be caputured.
+ To close these kinds of schedules, call the close method on the schedule directly.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.AccountManager.AuthPurchaseProduct(AirArena.Accounts.ProductCurrencies@,AirArena.Accounts.Account@,AirArena.Accounts.IPaymentMedium,System.String,System.Int32)">
+	<summary>
+ Create a Purchase for each ProductCurrency passed in to pcs
+ Calculate the total price/ctax/ltax for the purchases
+ Create a DelayedCapture Schedule based on the first productCurrency which is in pcs for payment delay days later.
+ Create a Single CCAttempt for the amounts totaled. 
+ Process an Authorise only transaction for the total amount.
+ Log the results to GatewayMessage
+ Add a DebitCredit transaction if successful which will cause the schedule to be reset for delay days otherwise cancel the Purchase.
+ </summary>
+	<param name="pcs">A list of ProductCurrencies. The transaction attempt will be registered to the first productcurrency in the list.</param>
+	<param name="acc">Account</param>
+	<param name="pm">CreditCard/LECDetails</param>
+	<param name="foreignId">The client application's reference to identify the account.</param>
+	<param name="delay">The number of days to delay capture by.</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.AccountManager.AuthPurchaseProduct(System.Collections.Generic.List{AirArena.Accounts.ProductCurrency}@,AirArena.Accounts.Account@,AirArena.Accounts.IPaymentMedium,System.String,System.Int32)">
+	<summary>
+ Create a Purchase for each ProductCurrency passed in to pcs
+ Calculate the total price/ctax/ltax for the purchases
+ Create a DelayedCapture Schedule based on the first productCurrency which is in pcs for payment delay days later.
+ Create a Single CCAttempt for the amounts totaled. 
+ Process an Authorise only transaction for the total amount.
+ Log the results to GatewayMessage
+ Add a DebitCredit transaction if successful which will cause the schedule to be reset for delay days otherwise cancel the Purchase.
+ </summary>
+	<param name="pcs">A list of ProductCurrencies. The transaction attempt will be registered to the first productcurrency in the list.</param>
+	<param name="acc">Account</param>
+	<param name="pm">CreditCard/LECDetails</param>
+	<param name="foreignId">The client application's reference to identify the account.</param>
+	<param name="delay">The number of days to delay capture by.</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.AccountManager.Refund(System.Int32,System.String,System.String)">
+	<summary>
+ Refunds a particular transaction.
+ </summary>
+	<param name="transactionId">The transactionid for the transaction which is to be refunded. It must be a valid transactionId which has not previously been refunded.</param>
+	<param name="notes">Free text describing the reason for the refund</param>
+	<param name="authorisedBy">Identify the Customer Service Respresentative who has authorised the refund</param>
+	<returns>The gateway's reference to the refund transaction if successful, if unsuccessful, then returns null string.</returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.AccountManager.ValidateCard(AirArena.Accounts.IPaymentMedium,AirArena.Accounts.ICustomer,System.String)">
+	<summary>
+ Used to check if a Payment Medium ( credit card, or phone number )  can validly be used to make a purchase.
+ </summary>
+	<returns>Boolean, true if the card details can be used to take payments, otherwise false.</returns>
+	<remarks></remarks>
+</member><member name="P:AirArena.Accounts.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:AirArena.Accounts.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:AirArena.Accounts.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:AirArena.Accounts.Schedule.ScheduleDelayedCapture(System.Int32,System.Decimal,System.Decimal,System.Decimal)">
+	<summary>
+ Creates a one off schedule which will be used for delayed capture transactions. After the Authorize transaction has completed successfully, set the scheduledt to the date that the capture should be performed.
+ </summary>
+	<param name="purchaseId"></param>
+	<param name="authAmount"></param>
+	<param name="authCountryTax"></param>
+	<param name="authLocalTax"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.Schedule.Pause">
+	<summary>
+ Puts the schedule into "InProgress" mode so that it won't be processed by the scheudler service.
+ </summary>
+	<returns>A string form of a guid is returned as a unique identifier. This identifier needs to be passed back in to Unpause the schedule. An empty string indicates that the schedule was not able to be paused.</returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.Schedule.UnPause(System.String)">
+	<summary>
+ Returns an "InProgress" schedule which has been paused by the Pause() method to "Scheduled" status.
+ </summary>
+	<param name="pauseToken">Pass in the return value from the Pause method.</param>
+	<returns>true if the sechedule was able to be returned to Scheduled status, false otherwise.</returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.Account.CloseAccount(AirArena.Accounts.Account)">
+	<summary>
+ Enumerates the purchases associated with the account and calls the close method on those purchases. This in turn calls
+ the close method on each schedule associated with those purchases. Please see the Close method for the purchase class
+ for further details.
+ </summary>
+	<param name="a">Enumerates the purchases associated with the account and calls the close method on those purchases. This in turn calls
+ the close method on each schedule associated with those purchases. Please see the Close method for the purchase class
+ for further details.</param>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.PaymentProcessedRule.#ctor(AirArena.Accounts.GatewayResponse@)">
+	<summary>
+ Constructor
+ </summary>
+	<param name="gr">Pass in the GatewayResponse object related to the Response received for the CCAttempt.</param>
+	<remarks></remarks>
+</member><member name="P:AirArena.Accounts.PaymentProcessedRule.CCAttempt">
+	<summary>
+ Any client applications must set the CCAttempt property immediately after instantiation, and before calling Activate.
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:AirArena.Accounts.PaymentProcessedRule.CancelInstructionReceived">
+	<summary>
+ Set to True if the client application returns the string CancelRule in the http resposne.
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.PaymentProcessedRule.Activate">
+	<summary>
+ An abstract method which is overriden to code the business rules behind each specific rule.
+ The standard implementation is to check specific business rules for the end rule, then if they indicate that 
+ the rule should be triggerd, then to check if the client application wishes to cancel the rule triggering by returning 
+ </summary>
+	<remarks></remarks>
+</member><member name="P:AirArena.Accounts.PaymentProcessedRule.GatewayResponse">
+	<summary>
+ Returns a reference to the GatewayResponse ojbect passed in during instatiation.
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.PaymentProcessedRule.NotifySubscriber">
+	<summary>
+ Send notification of the triggering of the rule to the subscriber as defined in the following gateway parameters:
+ RuleNotificationURL, RuleNotificationReceivedForReference, RuleNotificationEmail, RuleNotificationEmailFrom, RuleNotificationEmailFromName.
+ Returns True to indicate that the rule should continue to be processed. If the client application returns the string CancelRule within the http response,
+ this method will return False to indicate that the rule should not be processed.
+ If no valid response is received from the client application, we will send an email to the email address defined in gatewayparameter RuleNotificationEmail and assume that
+ the rule should continue to be processed. A valid response is one which contains the string RuleNotificationReceivedForReference&amp;ForeignID where ForeignId is the 
+ client application's internal reference to the purchase related to the CCAttempt.
+ </summary>
+	<returns>True to indicate that the rule should continue to be processed. False to indicate that the rule should not be processed.</returns>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.PaymentProcessedRule">
+	<summary>
+ This is the abstract base rule whic all other PaymentProcessedRules are inherited from.
+ The constructor logs the instantiation, and assigns the GgatewayResponse object
+ :CCAttempt Any client applications must set the CCAttempt property  immediately after instantiation, and before calling Activate
+ :Activate is an abstract method which is overriden to code the business rules behind each specific rule.
+ :NotifySubscriber sends notification of the triggering of the rule to the subscriber as defined in the following gateway parameters:
+ RuleNotificationURL, RuleNotificationReceivedForReference, RuleNotificationEmail, RuleNotificationEmailFrom, RuleNotificationEmailFromName.
+ Returns True to indicate that the rule should continue to be processed. False to indicate that the rule should not be processed.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.DoNothingRule.Activate">
+	<summary>
+ logs the call to the rule, and notifies the subscriber that the rule fired.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.DoNothingRule">
+	<summary>
+ An empty rule which performs no local action. The Client application is notified, and it may perform some action.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.SuccessRule">
+	<summary>
+ Logs the call to the rule, and notifies the subscriber that the rule faild. 
+ Can Be Used for Success payments.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.CancelScheduleRule">
+	<summary>
+ Cancels the Schedule which fired the rule. 
+ So long as the http post to the subscriber does not return with the text CancelRule, the Schedule which fired the rule will be cancelled.
+ All rules whos name starts with CancelSchedule inherit from this rule.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.CancelAccountRule">
+	<summary>
+ Cancels each Account and each Schedule on those Accounts for the Schedule which fired the rule.
+ So long as the http post to the subscriber does not return with the text CancelRule, the rule will be triggered.
+ All rules whos name starts with CancelAccount inherit from this rule.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.CompleteCancelAccountRule">
+	<summary>
+ Cancels the related Accounts &amp; Schedules which fired the rule. Also cancels recovery schedules.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.CancelSchedule90DaysRule">
+	<summary>
+ Cancels the Schedule which fired the rule when 90 days have passed since a successful payment on the credit card associated with this schedule
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.CancelAccount90DaysRule">
+	<summary>
+ Cancels the related Accounts &amp; Schedules which fired the rule when 90 days have passed since a successful payment on the credit card associated with this schedule
+ </summary>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.CancelScheduleCardExpiredCardRule.Activate">
+	<summary>
+ loop through all ccattempts for this credit card. If this is the first time that this rule has been triggered
+ for this card, then fire the rule.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.CancelScheduleCardExpiredCardRule">
+	<summary>
+ Cancels the Schedule which fired the rule. This rule loops through all ccattempts for this credit card. If this is the 
+ first time that this rule has been triggered for this card, then fire the rule. 
+ </summary>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.CancelAccountCardExpiredCardRule.Activate">
+	<summary>
+ loop through all ccattempts for this credit card. If this is the first time that this rule has been triggered
+ for this card, then fire the rule.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.CancelAccountCardExpiredCardRule">
+	<summary>
+ Cancels the related Accounts &amp; Schedules which fired the rule. This rule loops through all ccattempts for this credit card. If this is the 
+ first time that this rule has been triggered for this card, then fire the rule. 
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.CancelSchedulePickupCardRule">
+	<summary>
+ Cancels the Schedule which fired the rule. This rule has no extra functionality beyond it's base class, but enables the client application
+ to identify the reason for the firing of the rule.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.CancelAccountPickupCardRule">
+	<summary>
+ Cancels the related Accounts &amp; Schedules which fired the rule. This rule has no extra functionality beyond it's base class, but enables the client application
+ to identify the reason for the firing of the rule.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.SendEmailRule">
+	<summary>
+ Base class for rules whose basic task is to send the customer an email
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.SendStandardEmailNotificationRule">
+	<summary>
+ Sends an Airmail Email based on the mail template named "StandardEmailNotificationRule". The base object is this rule
+ Note, because of the %SmartTags%, the recipient can be configured to be the customer, any other field accessible through the object hierarchy exposed by this rule, or a specific string set in the email template.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.DoNothingCustomerContactBankRule">
+	<summary>
+ Performs no action on the accounts system, simply notifies the subscriber of the firing of the rule.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.SendEmailCardAboutToExpire1Rule">
+	<summary>
+ A rule which sends an email of the email template "CardAboutToExpire1Rule"
+ This should be used if it is desired to send an email on the 1st day of the last month of validity for the customer's card.
+ As with all the other rules, the Client Application will also be notified of the firing of this rule.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.DoNothingCardAboutToExpireRule">
+	<summary>
+ A Base class for rules which fire when the card is about to expire, but the onus is on the Client Application to 
+ perform any work with regards to informing the customer, or updating the card details.
+ No changes are made to any records in the accounts database when these rules are triggered.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.DoNothingCardAboutToExpire1Rule">
+	<summary>
+ This is the standard rule which relies on the client application contacting the client to inform them that their card is about to expire. 
+ This rule normally fires on the 1st day of the month of expiry of the card.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.DoNothingCardAboutToExpire15Rule">
+	<summary>
+ This rule would be used where the client application is also due to contact the client when day 15 of the expiry month
+ for the customers card arises. 
+ </summary>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.CreditCard.#ctor">
+	<summary>
+ Do not use this constructor. It is only public so that it can be used by webapi. Bad things may happen to you if you use it!
+ </summary>
+	<remarks></remarks>
+</member><member name="P:AirArena.Accounts.CreditCard.CreditCardId">
+	<summary>
+ Returns base.PaymentMediumId
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

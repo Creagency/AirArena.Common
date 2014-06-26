@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BSGBill2Phone
+</name>
+</assembly>
+<members>
+<member name="M:AirArena.Accounts.Providers.BSGBill2Phone.LineItem.ToString(System.String)">
+	<summary>
+ Pass in the Suffix to be appendd to each Name. Normal use is to have 1 for the first PrivateData item,
+ 2 for the second private data item, 3 for the third and so on.
+ </summary>
+	<param name="nameSuffix">The Suffix to be put at the end of each Field Name.</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.Providers.BSGBill2Phone.LineItem.ToString(System.Int32)">
+	<summary>
+ Pass in the zero based index for the PrivateData Collection
+ The returned tostring will have nothing appended to the Field Names for index 0, and index+1 appended for all other index values
+ eg ToString(2) will return PRIVTYPE3=value&amp;PRIVDATA3=value
+ </summary>
+	<param name="index">zero based index for the PrivateData Collection/List</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.Providers.BSGBill2Phone.PrivateDatum.ToString(System.String)">
+	<summary>
+ Pass in the Suffix to be appendd to each Name. Normal use is to have no suffix for the first PrivateData item,
+ 2 for the second private data item, 3 for the third and so on.
+ </summary>
+	<param name="nameSuffix">The Suffix to be put at the end of each Field Name.</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.Providers.BSGBill2Phone.PrivateDatum.ToString(System.Int32)">
+	<summary>
+ Pass in the zero based index for the PrivateData Collection
+ The returned tostring will have nothing appended to the Field Names for index 0, and index+1 appended for all other index values
+ eg ToString(2) will return PRIVTYPE3=value&amp;PRIVDATA3=value
+ </summary>
+	<param name="index">zero based index for the PrivateData Collection/List</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:AirArena.Accounts.Providers.BSGBill2Phone.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:AirArena.Accounts.Providers.BSGBill2Phone.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:AirArena.Accounts.Providers.BSGBill2Phone.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>

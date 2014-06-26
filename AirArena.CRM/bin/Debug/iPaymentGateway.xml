@@ -1,0 +1,109 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+iPaymentGateway
+</name>
+</assembly>
+<members>
+<member name="M:AirArena.Accounts.AppleItunesGateway.ChargeCard(AirArena.Accounts.IPaymentMedium,AirArena.Accounts.ICustomer,AirArena.Accounts.IProduct,System.Decimal,System.Decimal,System.String)">
+	<summary>
+ Unlike other payment Gatweays, new charges can only be instantiated through the storekit in the Iphone app. The ChargeCard method therefore is only used by the scheduler service to check the results of a scheduled transaction processed by the AppStore, and to record and report the results.
+  </summary>
+	<param name="paymentDetails"></param>
+	<param name="customerDetails"></param>
+	<param name="productDetails"></param>
+	<param name="countryTax"></param>
+	<param name="localTax"></param>
+	<param name="reference"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:AirArena.Accounts.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:AirArena.Accounts.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:AirArena.Accounts.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:AirArena.Accounts.BSGBill2PhoneGateway.#ctor(System.String,System.String,System.String,System.String[])">
+	<summary>
+	</summary>
+	<param name="URL"></param>
+	<param name="user">UserName</param>
+	<param name="password">Password</param>
+	<param name="args">Paramarray with the following arguments in this order: MerchantId,StoreId</param>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.PaymentGateway.IsBlockedBIN(System.String)">
+	<summary>
+ Used by Credit Card paymentGateways to determin if a transaction should be blocked due to the BIN being untrusted.
+ </summary>
+	<param name="cardNumber">The BIN is the first six digits of the credit card number.</param>
+	<returns>True if the gateway is currently blocking on BINs and if the card 's bin is in the blocked list.</returns>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.PaymentGateway">
+	<summary>
+ This class is intended to hold common functionality needed by multiple Ipaymentgateaway instances.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.PayFlowProGateway.Refund(AirArena.Accounts.IPaymentMedium,System.String,System.String,System.Decimal,System.String)">
+	<summary>
+ Performs a referenced credit transaction. This can only be used to refund a customer where a payment has previously been taken.
+ </summary>
+	<param name="PNRef">The PNRef of the original charge.</param>
+	<param name="localReference">The internal reference number for the transaction.</param>
+	<param name="amount">The amount to be refunded.</param>
+	<param name="currency">The currency of the refund.</param>
+	<returns>True indicates a successful refund, false indicates an unsuccessful refund</returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.IPaymentGateway.ChargeCard(AirArena.Accounts.IPaymentMedium,AirArena.Accounts.ICustomer,AirArena.Accounts.IProduct,System.Decimal,System.Decimal,System.String)">
+	<summary>
+ Perfomrs a standard AuthCapture transaction.
+ </summary>
+</member><member name="M:AirArena.Accounts.IPaymentGateway.ValidateCard(AirArena.Accounts.IPaymentMedium,AirArena.Accounts.ICustomer,System.String)">
+	<summary>
+ Performs a one dollar auth then voids it to ensure that future transactions would succeed. Use this to confirm that a credit card is valid but without charging immediately.
+ </summary>
+</member><member name="M:AirArena.Accounts.IPaymentGateway.Authorise(AirArena.Accounts.IPaymentMedium,AirArena.Accounts.ICustomer,AirArena.Accounts.IProduct,System.Decimal,System.Decimal,System.String)">
+	<summary>
+ Performs a standard Auth transaction
+ </summary>
+</member><member name="M:AirArena.Accounts.IPaymentGateway.Capture(System.String,AirArena.Accounts.IPaymentMedium,AirArena.Accounts.ICustomer,AirArena.Accounts.IProduct,System.Decimal,System.Decimal,System.String)">
+	<summary>
+ Performs a standard Capture transaction.
+ </summary>
+	<param name="TransactionReference">The reference obtained by a previous Auth transaction.</param>
+</member><member name="M:AirArena.Accounts.IPaymentGateway.Capture(System.String,AirArena.Accounts.IPaymentMedium,AirArena.Accounts.ICustomer,AirArena.Accounts.IProduct,System.Decimal,System.Decimal,System.Decimal,System.String)">
+	<summary>
+ Performs a standard Capture transaction, but captures only captureAmount, not the whole amount in productDetails
+ </summary>
+	<remarks></remarks>
+</member><member name="M:AirArena.Accounts.IPaymentGateway.VoiceAuthorise(System.String,AirArena.Accounts.IPaymentMedium,AirArena.Accounts.ICustomer,AirArena.Accounts.IProduct,System.Decimal,System.Decimal,System.String)">
+	<summary>
+ Performs a Voice Authorisation transaction. This can be used where a voic authorisation code has previously been obtained.
+ </summary>
+	<param name="authCode">The six digit authorisation code previously obtained by telephone.</param>
+</member><member name="M:AirArena.Accounts.IPaymentGateway.Refund(AirArena.Accounts.IPaymentMedium,System.String,System.String,System.Decimal,System.String)">
+	<summary>
+ Performs a referenced credit transaction. This can only be used to refund a customer where a payment has previously been taken.
+ </summary>
+	<param name="gatewayReference">Supply the gateway's transaction reference returned with the original charge.</param>
+	<param name="localReference">Supply any local invoice or purchaseid number.</param>
+	<param name="amount">The amount to be refunded.</param>
+	<param name="currency">The currency of the refund.</param>
+	<returns>True indicates a successful refund, false indicates an unsuccessful refund</returns>
+	<remarks></remarks>
+</member><member name="T:AirArena.Accounts.IPaymentGateway.Flags">
+	<summary>
+ AVSOff signifies that a payment failure because of AVS should NOT of itself cause an otherwise successful transaction to be voided. At the time of coding this ( 05/Jul/2007 ) AVS is only used by the Authorize.Net gateway, so this flag has no meaning for a PayPal gateway
+ CVV2Off has no effect as yet.
+ </summary>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

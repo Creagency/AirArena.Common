@@ -1,0 +1,174 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+AirArena.CRM
+</name>
+</assembly>
+<members>
+<member name="M:AirArena.CRM.EmailTemplateComponents.#ctor(AirArena.CRM.EmailTemplateComponentsSettings,System.Boolean)">
+	<summary>
+ Use this constructor to get split test components (etl invariant)
+ </summary>
+	<param name="emailTemplateComponentSettings"></param>
+	<param name="getSplitTestComponents"></param>
+	<remarks></remarks>
+</member><member name="P:AirArena.CRM.Ticket.StatusCode">
+	<summary>
+ ***If closing the Ticket, use Ticket.CloseTicket()
+ </summary>
+</member><member name="M:AirArena.CRM.EmailTemplateLanguage.#ctor(System.Int32)">
+	<summary>
+ Get email template language based on emailTemplateLanguageId. DON'T USE THIS OVERLAOD IN CMS!!!
+ </summary>
+	<param name="emailTemplateLanguageId"></param>
+	<remarks></remarks>
+</member><member name="M:AirArena.CRM.EmailTemplateLanguage.#ctor(System.Int32,System.Boolean,System.Boolean)">
+	<summary>
+ Get email template language by Id. Control if loading split test (if live), and if merge tags
+ are replaced on load
+ </summary>
+	<param name="emailTemplateLanguageId"></param>
+	<param name="ReplaceComponentsOnLoad"></param>
+	<param name="GetSplitTestVariations"></param>
+	<remarks></remarks>
+</member><member name="M:AirArena.CRM.EmailTemplateLanguage.#ctor(AirArena.CRM.EmailTemplate.TemplateName,System.Int32)">
+	<summary>
+ Get email template language based on template name and languageId. DON'T USE THIS OVERLAOD IN CMS!!!
+ </summary>
+	<param name="emailTemplateId"></param>
+	<param name="languageId"></param>
+	<remarks></remarks>
+</member><member name="M:AirArena.CRM.EmailTemplateLanguage.#ctor(AirArena.CRM.EmailTemplate.TemplateName,System.Int32,System.Boolean)">
+	<summary>
+ Use this constructor to show the email content without replacing components (In CMS)
+ <br>This constuctor also prevent any live split test to load (if False is passed)</br>
+	</summary>
+	<param name="emailTemplateId"></param>
+	<param name="languageId"></param>
+	<param name="ReplaceComponentsOnLoad"></param>
+	<remarks></remarks>
+</member><member name="M:AirArena.CRM.EmailTemplateLanguage.SetTrackingPixel">
+	<summary>
+ If both email template and config are set to use tracking - then return true.
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:AirArena.CRM.EmailTemplateLanguage.ReplaceComponentsOnLoad">
+	<summary>
+ When viewing the template in CMS we don’t want to replace components (like links) on load.
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.CRM.EmailTemplateLanguage.ReplaceEmailTemplateLanguageComponents(AirArena.CRM.EmailTemplateComponents,System.Boolean,AirArena.CRM.EmailTest.EmailSplitTest)">
+	<summary>
+	</summary>
+	<param name="etlComponents"></param>
+	<param name="ReplaceComponentsOnLoad">When Viewing in CMS is False</param>
+	<remarks></remarks>
+</member><member name="P:AirArena.CRM.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:AirArena.CRM.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:AirArena.CRM.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:AirArena.CRM.EmailCampaign.GetEmailCampaignSignupList(AirArena.CRM.EmailCampaign)">
+	<summary>
+ Gets the list of signups for that campaign and populates the last send signup code
+ </summary>
+	<param name="emailCampaign"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:AirArena.CRM.EmailTest.EmailSplitTest.EmailSplitTestVariations">
+	<summary>
+ Get all test variations. by default only live variation
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:AirArena.CRM.EmailTest.EmailSplitTest.EmailSplitTestVariations(System.Boolean)">
+	<summary>
+ Get all test variation. use overload to specify if live only or all
+ </summary>
+	<param name="GetOnlyLive"></param>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.CRM.EmailTest.EmailSplitTest.GetRandomTestVariation">
+	<summary>
+ Gets a random variation - checks if the test as auto percent or not and useses the needed function
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.CRM.EmailTest.EmailSplitTestContent.ParseCompleteEmailXmlToEtl(System.String)">
+	<summary>
+ Parse complete email from XML file to email template language object
+ </summary>
+	<param name="testContentXml"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.CRM.EmailTest.EmailSplitTestContent.ParseCompleteEmailXmlToString(System.String)">
+	<summary>
+ Parse complete email from XML file to string
+ </summary>
+	<param name="testContentXml"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.CRM.EmailTest.EmailSplitTestContent.CreateCompleteEmailXml(AirArena.CRM.EmailTemplateLanguage)">
+	<summary>
+ Create xml file to represent complete email variation
+ </summary>
+	<param name="etl">Email template language object</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:AirArena.CRM.EmailTemplateComponentsBase.#ctor(System.Int32)">
+	<summary>
+ Gets a collection of all components of this email template.
+ </summary>
+	<param name="emailTemplateLanguageId"></param>
+	<remarks></remarks>
+</member><member name="M:AirArena.CRM.EmailTemplateComponentsBase.#ctor(AirArena.CRM.EmailTemplateComponentsSettings,System.Boolean)">
+	<summary>
+ Use this constructor to get split test components (etl invariant)
+ </summary>
+	<param name="emailTemplateComponentSettings"></param>
+	<param name="getSplitTestComponents"></param>
+	<remarks></remarks>
+</member><member name="M:AirArena.CRM.EmailTemplateComponentsBase.Load(System.Int32,AirArena.CRM.EmailTemplateComponent.ComponentType)">
+	<summary>
+ stored proc not yet implemented !!!!
+ </summary>
+	<param name="emailTemplateLanguageId"></param>
+	<param name="componentType"></param>
+	<remarks></remarks>
+</member><member name="M:AirArena.CRM.EmailTemplateComponentsBase.Load(AirArena.CRM.EmailTemplateComponentsSettings,System.Boolean)">
+	<summary>
+ Use this overload to get split test components (etl invariant)
+ </summary>
+	<param name="emailTemplateComponentSettings"></param>
+	<param name="getSplitTestComponents"></param>
+	<remarks></remarks>
+</member><member name="F:AirArena.CRM.EmailTemplateLanguageBase.mTrackingEnabled">
+	<summary>
+ Might be deprecated
+ </summary>
+	<remarks></remarks>
+</member><member name="P:AirArena.CRM.EmailCampaignBase.CountryIDs">
+	<summary>
+ List of all countries that signups from them would receive this campaign.
+ If empty – all countries 
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member>
+</members>
+</doc>
