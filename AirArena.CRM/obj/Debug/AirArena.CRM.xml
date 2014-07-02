@@ -6,18 +6,7 @@ AirArena.CRM
 </name>
 </assembly>
 <members>
-<member name="M:AirArena.CRM.EmailTemplateComponents.#ctor(AirArena.CRM.EmailTemplateComponentsSettings,System.Boolean)">
-	<summary>
- Use this constructor to get split test components (etl invariant)
- </summary>
-	<param name="emailTemplateComponentSettings"></param>
-	<param name="getSplitTestComponents"></param>
-	<remarks></remarks>
-</member><member name="P:AirArena.CRM.Ticket.StatusCode">
-	<summary>
- ***If closing the Ticket, use Ticket.CloseTicket()
- </summary>
-</member><member name="M:AirArena.CRM.EmailTemplateLanguage.#ctor(System.Int32)">
+<member name="M:AirArena.CRM.EmailTemplateLanguage.#ctor(System.Int32)">
 	<summary>
  Get email template language based on emailTemplateLanguageId. DON'T USE THIS OVERLAOD IN CMS!!!
  </summary>
@@ -87,6 +76,17 @@ AirArena.CRM
 	<param name="emailCampaign"></param>
 	<returns></returns>
 	<remarks></remarks>
+</member><member name="M:AirArena.CRM.EmailTemplateComponents.#ctor(AirArena.CRM.EmailTemplateComponentsSettings,System.Boolean)">
+	<summary>
+ Use this constructor to get split test components (etl invariant)
+ </summary>
+	<param name="emailTemplateComponentSettings"></param>
+	<param name="getSplitTestComponents"></param>
+	<remarks></remarks>
+</member><member name="P:AirArena.CRM.Ticket.StatusCode">
+	<summary>
+ ***If closing the Ticket, use Ticket.CloseTicket()
+ </summary>
 </member><member name="P:AirArena.CRM.EmailTest.EmailSplitTest.EmailSplitTestVariations">
 	<summary>
  Get all test variations. by default only live variation

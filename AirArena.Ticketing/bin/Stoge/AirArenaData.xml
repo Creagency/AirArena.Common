@@ -1,0 +1,40 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+AirArenaData
+</name>
+</assembly>
+<members>
+<member name="M:AirArena.Data.DataConnector.#ctor">
+	<summary>
+ Please ensure that your config file has a ConfigSection as defined at http://schemas.airarena.com.au/config/DataConnector/200709/AADataConnector.xsd
+ eg:
+ Place &lt;section name="AirArenaDataConnectorConfig" type="AirArena.Data.Configuration.AirArenaDataConnectorConfig, AirArenaData" /&gt; in the &lt;configSections&gt; section of your config file. &lt;configSections&gt; must appear immediately after the root &lt;configuration&gt; node.
+ After the &lt;/configSections&gt; place your &lt;AirArenaDataConnectorConfig&gt; section for example:
+ &lt;AirArenaDataConnectorConfig xmlns="http://schemas.airarena.com.au/config/DataConnector/200709/AADataConnector.xsd"&gt;
+	&lt;Connectors&gt;
+		&lt;Connector Prefix="YourProjectIdentifier" ConnectionString="Data Source=Localhost;Initial Catalog=YourDatabases;User Id=User;Password=Password" FactoryVariant="MSSQL"/&gt;
+	&lt;/Connectors&gt;
+&lt;/AirArenaDataConnectorConfig&gt;
+ There can be any number of &lt;Connector&gt;s but each must use a unique Prefix
+ </summary>
+	<remarks></remarks>
+</member><member name="M:AirArena.Data.DataConnector.#ctor(System.String)">
+	<summary>
+ Please ensure that your config file has a ConfigSection as defined at http://schemas.airarena.com.au/config/DataConnector/200709/AADataConnector.xsd
+ eg:
+ Place &lt;section name="AirArenaDataConnectorConfig" type="AirArena.Data.Configuration.AirArenaDataConnectorConfig, AirArenaData" /&gt; in the &lt;configSections&gt; section of your config file. &lt;configSections&gt; must appear immediately after the root &lt;configuration&gt; node.
+ After the &lt;/configSections&gt; place your &lt;AirArenaDataConnectorConfig&gt; section for example:
+ &lt;AirArenaDataConnectorConfig xmlns="http://schemas.airarena.com.au/config/DataConnector/200709/AADataConnector.xsd"&gt;
+	&lt;Connectors&gt;
+		&lt;Connector Prefix="YourProjectIdentifier" ConnectionString="Data Source=Localhost;Initial Catalog=YourDatabases;User Id=User;Password=Password" FactoryVariant="MSSQL"/&gt;
+	&lt;/Connectors&gt;
+&lt;/AirArenaDataConnectorConfig&gt;
+ There can be any number of &lt;Connector&gt;s but each must use a unique Prefix
+ </summary>
+	<param name="connectionStringPrefix">Place a &lt;Connector&gt; in the &lt;Connectors&gt; section of the &lt;AirArenaDataConnectorConfig&gt; section of your config file with a Prefix the same as passed in to this parameter. Prefix can be left blank both here, and in the config file.</param>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

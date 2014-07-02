@@ -1,0 +1,10 @@
+C:\Code\AirArena\Projects\Teensafe.net\AirArena.Event\obj\Debug\AirArena.Event.csprojResolveAssemblyReference.cache
+C:\Code\AirArena\Projects\Teensafe.net\AirArena.Event\bin\Debug\AirArena.Event.dll
+C:\Code\AirArena\Projects\Teensafe.net\AirArena.Event\bin\Debug\AirArena.Event.pdb
+C:\Code\AirArena\Projects\Teensafe.net\AirArena.Event\bin\Debug\AirArenaData.dll
+C:\Code\AirArena\Projects\Teensafe.net\AirArena.Event\bin\Debug\log4net.dll
+C:\Code\AirArena\Projects\Teensafe.net\AirArena.Event\bin\Debug\AirArenaData.pdb
+C:\Code\AirArena\Projects\Teensafe.net\AirArena.Event\bin\Debug\AirArenaData.xml
+C:\Code\AirArena\Projects\Teensafe.net\AirArena.Event\bin\Debug\log4net.xml
+C:\Code\AirArena\Projects\Teensafe.net\AirArena.Event\obj\Debug\AirArena.Event.dll
+C:\Code\AirArena\Projects\Teensafe.net\AirArena.Event\obj\Debug\AirArena.Event.pdb
