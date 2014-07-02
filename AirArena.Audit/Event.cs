@@ -19,15 +19,21 @@ namespace AirArena.Audit
         }
         
         private DataConnector DataCon;
-        public static Event<TUserId> AddEvent(TUserId userId, EventType.EventTypeName eventType, string comments)
+        //public static Event<TUserId> AddEvent(TUserId userId, EventType.EventTypeName eventType, string comments)
+        //{
+        //    var e = new Event<TUserId> { UserId = userId, EventTypeId = (int)eventType, Comments = comments };
+        //    e.Save();
+        //    return e;
+        //}
+        public static Event<TUserId> AddEvent(TUserId userId, int eventTypeId, string comments)
         {
-            var e = new Event<TUserId> { UserId = userId, EventTypeId = (int)eventType, Comments = comments };
+            var e = new Event<TUserId> { UserId = userId, EventTypeId = eventTypeId, Comments = comments };
             e.Save();
             return e;
         }
-        public static Event<TUserId> AddEvent(TUserId userId, EventType.EventTypeName eventType)
+        public static Event<TUserId> AddEvent(TUserId userId, int eventTypeId)
         {
-            return AddEvent(userId, eventType, string.Empty);
+            return AddEvent(userId, eventTypeId, string.Empty);
         }
         public Event()
         {
